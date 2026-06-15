@@ -1,6 +1,12 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { MainLayout } from '@/presentation/layouts/MainLayout';
 import { CampaignCreatePage } from '@/presentation/pages/campaigns/CampaignCreatePage';
+import { CampaignDetailPage } from '@/presentation/pages/campaigns/CampaignDetailPage';
+import { CampaignListPage } from '@/presentation/pages/campaigns/CampaignListPage';
+import { HostDetailPage } from '@/presentation/pages/hosts/HostDetailPage';
+import { HostListPage } from '@/presentation/pages/hosts/HostListPage';
+import { ModelDetailPage } from '@/presentation/pages/models/ModelDetailPage';
+import { ModelListPage } from '@/presentation/pages/models/ModelListPage';
 import { HomePage } from '@/presentation/pages/home/HomePage';
 import { PlaceholderPage } from '@/presentation/pages/shared/PlaceholderPage';
 import { NotFoundPage } from '@/presentation/pages/system/NotFoundPage';
@@ -11,7 +17,7 @@ export const appRouter = createBrowserRouter([
     element: <MainLayout />,
     children: [
       { index: true, element: <HomePage />, handle: { bottomNav: 'home' } satisfies RouteHandle },
-      { path: 'hosts', element: <PlaceholderPage />, handle: { title: '쇼호스트', bottomNav: 'hosts' } satisfies RouteHandle },
+      { path: 'hosts', element: <HostListPage />, handle: { title: '쇼호스트', bottomNav: 'hosts' } satisfies RouteHandle },
       {
         path: 'hosts/new',
         element: <PlaceholderPage />,
@@ -19,7 +25,7 @@ export const appRouter = createBrowserRouter([
       },
       {
         path: 'hosts/:hostId',
-        element: <PlaceholderPage />,
+        element: <HostDetailPage />,
         handle: { title: '쇼호스트 상세', bottomNav: 'hosts' } satisfies RouteHandle,
       },
       {
@@ -32,7 +38,7 @@ export const appRouter = createBrowserRouter([
         element: <PlaceholderPage />,
         handle: { title: '쇼호스트 포트폴리오 등록', showAppNav: false } satisfies RouteHandle,
       },
-      { path: 'models', element: <PlaceholderPage />, handle: { title: '모델', bottomNav: 'models' } satisfies RouteHandle },
+      { path: 'models', element: <ModelListPage />, handle: { title: '모델', bottomNav: 'models' } satisfies RouteHandle },
       {
         path: 'models/new',
         element: <PlaceholderPage />,
@@ -40,12 +46,12 @@ export const appRouter = createBrowserRouter([
       },
       {
         path: 'models/:modelId',
-        element: <PlaceholderPage />,
+        element: <ModelDetailPage />,
         handle: { title: '모델 상세', bottomNav: 'models' } satisfies RouteHandle,
       },
       {
         path: 'campaigns',
-        element: <PlaceholderPage />,
+        element: <CampaignListPage />,
         handle: { title: '공고', bottomNav: 'campaigns' } satisfies RouteHandle,
       },
       {
@@ -55,7 +61,7 @@ export const appRouter = createBrowserRouter([
       },
       {
         path: 'campaigns/:campaignId',
-        element: <PlaceholderPage />,
+        element: <CampaignDetailPage />,
         handle: { title: '공고 상세', bottomNav: 'campaigns' } satisfies RouteHandle,
       },
       {

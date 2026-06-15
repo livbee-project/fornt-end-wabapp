@@ -17,7 +17,10 @@ const Content = styled.main<{ $withNav: boolean }>`
   padding-bottom: ${({ $withNav, theme }) => ($withNav ? `calc(${theme.layout.bottomNavHeight} + 12px)` : '0')};
 
   ${media.desktop} {
+    max-width: none;
+    width: ${({ $withNav }) => ($withNav ? 'calc(100% - 96px)' : '100%')};
     margin-left: ${({ $withNav }) => ($withNav ? '96px' : '0')};
+    margin-right: 0;
     padding-bottom: ${({ $withNav }) => ($withNav ? '24px' : '0')};
   }
 `;
