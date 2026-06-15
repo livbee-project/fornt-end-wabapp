@@ -2,7 +2,9 @@
 
 ## 요구 버전
 
-**24.16.0** — `.nvmrc` / `package.json` engines
+**24.16.0** — `.nvmrc` (로컬 고정)
+
+`package.json` `engines`는 Vercel 등 호스트가 패치 버전만 다를 수 있어 **`>=24.0.0 <25`** 범위를 사용한다.
 
 ## 설치 (nvm-windows)
 

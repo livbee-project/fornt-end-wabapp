@@ -8,6 +8,7 @@
 | [node.md](./node.md) | Node.js |
 | [env.md](./env.md) | 환경 변수 |
 | [run.md](./run.md) | 명령어 |
+| [deploy.md](./deploy.md) | Vercel 배포 |
 | [paths.md](./paths.md) | 루트 경로 |
 | [arch.md](./arch.md) | 클린 아키텍처 |
 | [domain/data-rules.md](./domain/data-rules.md) | 도메인·mock 데이터 규칙 |
