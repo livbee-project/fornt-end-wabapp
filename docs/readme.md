@@ -9,9 +9,10 @@
 | [env.md](./env.md) | 환경 변수 |
 | [run.md](./run.md) | 명령어 |
 | [paths.md](./paths.md) | 루트 경로 |
-| [arch.md](./arch.md) | 클린 아키텍처 (예정) |
-| [style.md](./style.md) | 스타일 (예정) |
-| [route.md](./route.md) | 라우팅 (예정) |
+| [arch.md](./arch.md) | 클린 아키텍처 |
+| [domain/data-rules.md](./domain/data-rules.md) | 도메인·mock 데이터 규칙 |
+| [style.md](./style.md) | 전역 디자인 토큰·styled-components 테마 |
+| [route.md](./route.md) | 라우팅·Route handle |
 
 ## 빠른 시작
 
