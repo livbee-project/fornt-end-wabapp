@@ -18,13 +18,16 @@
 | Vite | 8.0.16 |
 | TypeScript | 6.0.3 |
 | Vitest | 4.1.9 |
+| styled-components | 6.4.x |
+| react-router-dom | 7.17.x |
+| react-hook-form | 7.79.x |
+| vite-plugin-pwa | 1.3.x |
 
-## 예정 (미설치)
+## PWA
 
-| 항목 | 버전 | 문서 |
-|------|------|------|
-| styled-components | 6.x | [style.md](./style.md) |
-| react-router-dom | 7.x | [route.md](./route.md) |
+- `vite.config.ts` — `VitePWA` manifest·workbox 설정
+- 아이콘: `public/pwa-192.png`, `public/pwa-512.png` (`npm run generate:pwa-icons`)
+- 개발 모드에서도 SW 등록 (`devOptions.enabled`)
 
 ## 도구
 
@@ -32,6 +35,7 @@
 |------|-----------|
 | Prettier | `.prettierrc`, `.prettierignore` |
 | Cursor 규칙 | `.cursor/rules/` (저장소 포함) |
+| PWA 아이콘 생성 | `scripts/generate-pwa-icons.mjs` (sharp) |
 
 ## TypeScript
 
@@ -40,3 +44,9 @@
 - `tsconfig.node.json` — Vite·Vitest 설정 파일
 
 `@/*` → `./src/*` (Vite alias + TS paths 공통)
+
+## 관련 문서
+
+- [style.md](./style.md) — styled-components·토큰
+- [route.md](./route.md) — 라우트·네비
+- [page-spec.md](./page-spec.md) — 화면별 CTA·레이아웃 규칙

@@ -21,10 +21,16 @@
 - 라우트별 제목·내비 노출은 `Route`의 `handle`로 선언하고 `useRouteHandle`로 읽는다
 - 상세 구조는 [arch.md](./arch.md) 참고
 
-## 주요 경로 (스캐폴드)
+## 주요 경로
 
-`src/app/Router.tsx`가 단일 원본이다. 홈·공고·쇼호스트·모델·마이페이지·콘텐츠·인증 경로를 포함하며, 대부분은 `PlaceholderPage`로 연결되어 있다.
+`src/app/Router.tsx`가 단일 원본이다.
 
-- 구현 데모: `/`, `/campaigns`, `/campaigns/:campaignId`, `/campaigns/new`, `/hosts`, `/hosts/:hostId`, `/models`, `/models/:modelId`
-- 하단/사이드 내비: `handle.bottomNav` 또는 경로 prefix 자동 매칭
-- 등록·폼 화면: `handle.showAppNav: false`로 내비 숨김
+| 영역 | 목록 | 등록 | 상세 |
+|------|------|------|------|
+| 공고 | `/campaigns` | `/campaigns/new` | `/campaigns/:campaignId` |
+| 쇼호스트 | `/hosts` | `/hosts/new` | `/hosts/:hostId` |
+| 모델 | `/models` | `/models/new` | `/models/:modelId` |
+
+- 구현 완료: 홈, 공고·쇼호스트·모델 목록/상세/등록
+- 등록·폼: `handle.showAppNav: false`로 하단/사이드 내비 숨김
+- UI 레이아웃: [page-spec.md](./page-spec.md)

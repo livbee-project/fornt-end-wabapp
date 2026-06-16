@@ -26,7 +26,8 @@
 | `BackHeader` | `common/BackHeader.tsx` |
 | `FormSection` | `common/FormSection.tsx` |
 | `UploadBox` | `common/UploadBox.tsx` |
-| `FixedBottomActions` | `common/FixedBottomActions.tsx` |
+| `ActivityUploadRow` | `common/ActivityUploadRow.tsx` |
+| `FixedBottomActions` | `common/FixedBottomActions.tsx` (`position: fixed`) |
 | `ConfirmModal` | `common/ConfirmModal.tsx` |
 | `BottomNavigation` | `layout/BottomNavigation.tsx` |
 
@@ -52,5 +53,5 @@
 
 ## 참고
 
-- 기준: test_codex `docs/design/style-system.md`, `tokens.css`, `global.css`
-- 상세 워크플로·컴포넌트 선택은 추후 `docs/design/` 문서로 확장 예정
+- 상세 규칙: [design/common-components.md](./design/common-components.md), [home-card-rules.md](./home-card-rules.md)
+- 기준: test_codex `docs/design/style-system.md`
