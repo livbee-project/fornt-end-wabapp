@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import type { ViteDevServer } from 'vite';
 import react from '@vitejs/plugin-react';
+import { VitePWA } from 'vite-plugin-pwa';
 import path from 'path';
 
 // https://vite.dev/config/
@@ -59,7 +60,33 @@ const openExternalBrowser = () => {
 };
 
 export default defineConfig({
-  plugins: [react(), openExternalBrowser()],
+  plugins: [
+    react(),
+    VitePWA({
+      registerType: 'autoUpdate',
+      includeAssets: ['favicon.svg'],
+      manifest: {
+        name: 'Livbee',
+        short_name: 'Livbee',
+        description: '쇼호스트, 모델, 브랜드를 연결하는 매칭 플랫폼',
+        theme_color: '#687cf4',
+        background_color: '#ffffff',
+        display: 'standalone',
+        lang: 'ko',
+        start_url: '/',
+        icons: [
+          { src: '/pwa-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
+          { src: '/pwa-512.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
+          { src: '/pwa-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+          { src: '/favicon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any' },
+        ],
+      },
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,jpg,webp,woff2}'],
+      },
+    }),
+    openExternalBrowser(),
+  ],
   /* Vite 절대 경로 설정 */
   resolve: {
     alias: {
