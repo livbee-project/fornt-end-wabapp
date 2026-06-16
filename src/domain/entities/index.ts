@@ -1,3 +1,4 @@
+/** 도메인 엔티티·상수 barrel re-export */
 export type {
   CampaignCreateFormValues,
   CampaignItem,
@@ -8,6 +9,7 @@ export type {
   ClipCreatorRole,
   ClipItem,
   HostProfileFormValues,
+  HostPortfolioFormValues,
   LiveItem,
   ModelProfileFormValues,
   NewsItem,

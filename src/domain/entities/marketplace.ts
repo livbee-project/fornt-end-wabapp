@@ -1,11 +1,17 @@
+/** 공고 일정 유형 허용 값 목록 */
 export const CAMPAIGN_SCHEDULE_TYPES = ['fixed', 'negotiable'] as const;
+/** 공고 장소 공개 정책 허용 값 목록 */
 export const CAMPAIGN_LOCATION_DISCLOSURES = ['public', 'afterContract'] as const;
+/** 공고 촬영 방식 허용 값 목록 */
 export const CAMPAIGN_SHOOTING_METHODS = ['studio', 'live', 'shortform', 'product', 'negotiable'] as const;
+/** 게시·임시저장 상태 허용 값 목록 */
 export const PUBLISH_STATUSES = ['draft', 'published'] as const;
+/** 공고 상태(마감 포함) 허용 값 목록 */
 export const CAMPAIGN_STATUSES = [...PUBLISH_STATUSES, 'closed'] as const;
+/** 프로필 공개 범위 허용 값 목록 */
 export const PROFILE_VISIBILITIES = ['public', 'private'] as const;
+/** 사용자 역할 허용 값 목록 */
 export const USER_ROLES = ['brand', 'host', 'model'] as const;
-
 export type CampaignScheduleType = (typeof CAMPAIGN_SCHEDULE_TYPES)[number];
 export type CampaignLocationDisclosure = (typeof CAMPAIGN_LOCATION_DISCLOSURES)[number];
 export type CampaignShootingMethod = (typeof CAMPAIGN_SHOOTING_METHODS)[number];
@@ -14,6 +20,7 @@ export type CampaignStatus = (typeof CAMPAIGN_STATUSES)[number];
 export type ProfileVisibility = (typeof PROFILE_VISIBILITIES)[number];
 export type UserRole = (typeof USER_ROLES)[number];
 
+/** 쇼핑라이브 카드 도메인 엔티티 */
 export type LiveItem = {
   id: string;
   campaignId?: string;
@@ -26,6 +33,7 @@ export type LiveItem = {
   shootingDate: string;
 };
 
+/** 브랜드 공고 도메인 엔티티 */
 export type CampaignItem = {
   id: string;
   coverImage: string;
@@ -56,6 +64,7 @@ export type CampaignItem = {
   status?: CampaignStatus;
 };
 
+/** 쇼호스트·모델 공통 프로필 엔티티 */
 export type TalentProfile = {
   id: string;
   profileImage: string;
@@ -72,6 +81,7 @@ export type TalentProfile = {
 
 type RequiredTalentFields<K extends keyof TalentProfile> = Required<Pick<TalentProfile, K>>;
 
+/** 쇼호스트 프로필 등록 폼 값 타입 */
 export type HostProfileFormValues = RequiredTalentFields<'name' | 'category' | 'experienceYears' | 'location'> & {
   profileImage?: FileList;
   registerType: string;
@@ -89,6 +99,7 @@ export type HostProfileFormValues = RequiredTalentFields<'name' | 'category' | '
   status: PublishStatus;
 };
 
+/** 모델 프로필 등록 폼 값 타입 */
 export type ModelProfileFormValues = RequiredTalentFields<'name' | 'modelType' | 'height' | 'location'> & {
   profileImage?: FileList;
   oneLineIntro: string;
@@ -103,6 +114,7 @@ export type ModelProfileFormValues = RequiredTalentFields<'name' | 'modelType' |
   status: PublishStatus;
 };
 
+/** 공고 등록 폼 값 타입 */
 export type CampaignCreateFormValues = Omit<CampaignItem, 'id' | 'coverImage' | 'status'> & {
   coverImage?: FileList;
   liveThumbnail?: FileList;
@@ -129,8 +141,24 @@ export type CampaignCreateFormValues = Omit<CampaignItem, 'id' | 'coverImage' | 
   status: PublishStatus;
 };
 
+/** 쇼호스트 포트폴리오 등록 폼 값 타입 */
+export type HostPortfolioFormValues = {
+  hostId: string;
+  title: string;
+  description: string;
+  category: string;
+  experienceSummary: string;
+  liveUrl: string;
+  liveTitle: string;
+  tags: string;
+  visibility: ProfileVisibility;
+  status: PublishStatus;
+};
+
+/** 숏클립 크리에이터 역할 */
 export type ClipCreatorRole = 'host' | 'model';
 
+/** 숏클립 카드 도메인 엔티티 */
 export type ClipItem = {
   id: string;
   thumbnail: string;
@@ -148,6 +176,7 @@ export type ClipItem = {
   createdAt?: string;
 };
 
+/** 뉴스 카드 도메인 엔티티 */
 export type NewsItem = {
   id: string;
   thumbnail: string;

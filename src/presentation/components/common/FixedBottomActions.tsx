@@ -18,9 +18,12 @@ type FixedBottomActionsProps = {
   primaryType?: 'button' | 'submit';
   secondaryType?: 'button' | 'submit';
   disabled?: boolean;
+  /** 하단 탭 네비가 보이는 페이지에서 true */
+  withBottomNav?: boolean;
   extraSlot?: ReactNode;
 };
 
+/** 화면 하단에 고정되는 취소·주요 액션 버튼 바 */
 export function FixedBottomActions({
   cancelLabel = '취소',
   cancelTo,
@@ -32,10 +35,11 @@ export function FixedBottomActions({
   primaryType = 'button',
   secondaryType = 'button',
   disabled = false,
+  withBottomNav = false,
   extraSlot,
 }: FixedBottomActionsProps) {
   return (
-    <ActionBar>
+    <ActionBar $withBottomNav={withBottomNav}>
       {cancelTo ? (
         <CancelLink to={cancelTo}>{cancelLabel}</CancelLink>
       ) : (
