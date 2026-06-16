@@ -8,10 +8,7 @@ import {
   typography,
 } from './tokens';
 
-/**
- * :root에 주입할 CSS custom properties.
- * styled-components theme와 동일한 tokens.ts를 참조한다.
- */
+/** :root에 주입할 CSS custom properties 맵 */
 export const cssVariableDefinitions = {
   '--color-brand-primary': colors.brand.primary,
   '--color-brand-primary-hover': colors.brand.primaryHover,
@@ -97,6 +94,7 @@ export const cssVariableDefinitions = {
   '--weight-meta': String(typography.fontWeight.meta),
 } as const;
 
+/** CSS 변수 객체를 :root 블록용 문자열로 변환한다. */
 export function toCssVariableBlock(
   definitions: Record<string, string>,
 ): string {

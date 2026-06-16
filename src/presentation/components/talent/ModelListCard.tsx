@@ -16,6 +16,7 @@ type ModelListCardProps = {
   item: TalentProfile;
 };
 
+/** 모델 목록용 가로형 카드 */
 export function ModelListCard({ item }: ModelListCardProps) {
   const firstTag = item.tags?.[0]?.replace('#', '');
 

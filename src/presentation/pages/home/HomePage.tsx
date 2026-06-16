@@ -2,10 +2,9 @@ import { ServiceHeader } from '@/presentation/components/layout/ServiceHeader';
 import {
   CampaignCard,
   ClipCard,
-  HostCard,
   LiveCard,
-  ModelCard,
   NewsCard,
+  ProfileCard,
 } from '@/presentation/components/home/HomeCards';
 import { HomeFooter } from '@/presentation/components/home/HomeFooter';
 import {
@@ -33,6 +32,7 @@ import {
   SectionSubtitle,
 } from './HomePage.styles';
 
+/** 메인 홈 — 히어로·섹션 카드·푸터를 렌더링 */
 export function HomePage() {
   const repository = useMarketplaceRepository();
   const home = repository.getHomeData();
@@ -82,7 +82,7 @@ export function HomePage() {
           href="/hosts"
         >
           {home.hostProfiles.map((item) => (
-            <HostCard key={item.id} item={item} />
+            <ProfileCard key={item.id} item={item} type="host" />
           ))}
         </HomeSectionBlock>
 
@@ -92,7 +92,7 @@ export function HomePage() {
           href="/models"
         >
           {home.modelProfiles.map((item) => (
-            <ModelCard key={item.id} item={item} />
+            <ProfileCard key={item.id} item={item} type="model" />
           ))}
         </HomeSectionBlock>
 

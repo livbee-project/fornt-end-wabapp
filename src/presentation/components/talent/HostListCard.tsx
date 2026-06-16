@@ -16,6 +16,7 @@ type HostListCardProps = {
   item: TalentProfile;
 };
 
+/** 쇼호스트 목록용 가로형 카드 */
 export function HostListCard({ item }: HostListCardProps) {
   const firstTag = item.tags?.[0]?.replace('#', '');
 

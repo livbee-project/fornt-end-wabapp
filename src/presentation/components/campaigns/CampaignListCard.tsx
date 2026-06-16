@@ -11,7 +11,7 @@ import {
   Media,
   MetaChip,
   MetaRow,
-  PaymentBadge,
+  PaymentLine,
   Summary,
   Title,
 } from './CampaignListCard.styles';
@@ -21,14 +21,14 @@ type CampaignListCardProps = {
   variant?: 'default' | 'compact';
 };
 
+/** 공고 목록 카드 — default·compact 변형 지원 */
 export function CampaignListCard({ item, variant = 'default' }: CampaignListCardProps) {
   const LinkComponent = variant === 'compact' ? ListCardCompactLink : CardLink;
 
   return (
     <LinkComponent to={`/campaigns/${item.id}`}>
       <Media>
-        <img src={item.coverImage} alt={`${item.title} 공고 대표 이미지`} loading="lazy" />
-        <PaymentBadge>출연료 {formatWon(item.payment)}</PaymentBadge>
+        <img src={item.coverImage} alt="" loading="lazy" />
       </Media>
       <Body>
         <MetaRow>
@@ -36,9 +36,10 @@ export function CampaignListCard({ item, variant = 'default' }: CampaignListCard
           {item.badge ? <MetaChip>{item.badge}</MetaChip> : null}
           {item.targetRole ? <MetaChip>{item.targetRole}</MetaChip> : null}
         </MetaRow>
-        <BrandName>{item.brandName}</BrandName>
         <Title>{item.title}</Title>
         <Summary>{item.summary}</Summary>
+        <PaymentLine>출연료 {formatWon(item.payment)}</PaymentLine>
+        <BrandName>{item.brandName}</BrandName>
         <InfoList>
           <div>
             <dt>

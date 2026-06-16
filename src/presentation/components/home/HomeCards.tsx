@@ -12,57 +12,47 @@ import {
   BrandCardBody,
   BrandCardLink,
   BrandMedia,
-  CampaignInfoList,
+  CampaignBrandName,
+  CampaignPayment,
+  CampaignShootingDate,
   CampaignSummary,
   CampaignTitle,
   ClipCardBody,
   ClipCardLink,
   ClipMedia,
-  HostAvatar,
-  HostCardLink,
   LiveCardBody,
   LiveCardLink,
   LiveMedia,
-  LiveProductRow,
-  LiveProductThumb,
-  ModelCardLink,
-  ModelMedia,
   NewsCardBody,
   NewsCardLink,
+  NewsCategory,
   NewsThumb,
-  PaymentBadge,
   PlayButton,
-  ProfileCardBody,
+  ProfileCardArticle,
+  ProfileCardBodyHost,
+  ProfileCardBodyModel,
+  ProfileCardMainLink,
+  ProfileCtaRow,
   ProfileMeta,
+  ProfilePhoto,
+  ProfilePrimaryCta,
+  ProfileSecondaryCta,
   ProfileTitleRow,
   RoleChip,
 } from '@/presentation/pages/home/HomePage.styles';
 
 type LiveCardProps = { item: LiveItem };
 
+/** 홈 쇼핑라이브 카드 — 연결된 공고 상세로 이동 */
 export function LiveCard({ item }: LiveCardProps) {
-  const representativeProduct = item.productName ?? item.title;
-
   return (
     <LiveCardLink to={getLiveCampaignPath(item)}>
       <LiveMedia>
-        <img src={item.liveThumbnail} alt={`${item.title} 라이브 썸네일`} />
+        <img src={item.liveThumbnail} alt="" />
       </LiveMedia>
       <LiveCardBody>
         <strong>{item.title}</strong>
-        <em>{item.brandName}</em>
-        <LiveProductRow>
-          <LiveProductThumb>
-            <img
-              src={item.productImage ?? item.liveThumbnail}
-              alt={`${representativeProduct} 상품 이미지`}
-            />
-          </LiveProductThumb>
-          <div>
-            <span>대표 상품</span>
-            <p>{representativeProduct}</p>
-          </div>
-        </LiveProductRow>
+        <p>{item.summary}</p>
         <small>{formatDate(item.shootingDate)} 방송</small>
       </LiveCardBody>
     </LiveCardLink>
@@ -71,90 +61,80 @@ export function LiveCard({ item }: LiveCardProps) {
 
 type CampaignCardProps = { item: CampaignItem };
 
+/** 홈 브랜드 PICK 공고 카드 */
 export function CampaignCard({ item }: CampaignCardProps) {
   return (
     <BrandCardLink to={`/campaigns/${item.id}`}>
       <BrandMedia>
-        <img src={item.coverImage} alt={`${item.title} 공고 대표 이미지`} />
-        <PaymentBadge>출연료 {formatWon(item.payment)}</PaymentBadge>
+        <img src={item.coverImage} alt="" />
       </BrandMedia>
       <BrandCardBody>
-        <strong>{item.brandName}</strong>
         <CampaignTitle>{item.title}</CampaignTitle>
         <CampaignSummary>{item.summary}</CampaignSummary>
-        <CampaignInfoList>
-          <div>
-            <dt>
-              <Icon name="calendar" />
-              촬영일
-            </dt>
-            <dd>{formatDate(item.shootingDate)}</dd>
-          </div>
-        </CampaignInfoList>
+        <CampaignPayment>출연료 {formatWon(item.payment)}</CampaignPayment>
+        <CampaignBrandName>{item.brandName}</CampaignBrandName>
+        <CampaignShootingDate>촬영일 {formatDate(item.shootingDate)}</CampaignShootingDate>
       </BrandCardBody>
     </BrandCardLink>
   );
 }
 
-type HostCardProps = { item: TalentProfile };
+type ProfileCardProps = { item: TalentProfile; type: 'host' | 'model' };
 
-export function HostCard({ item }: HostCardProps) {
-  const firstTag = item.tags?.[0]?.replace('#', '');
+/** 태그 문자열에 # 접두사를 보장한다. */
+const formatTag = (tag: string) => (tag.startsWith('#') ? tag : `#${tag}`);
 
-  return (
-    <HostCardLink to={`/hosts/${item.id}`}>
-      <HostAvatar>
-        <img src={item.profileImage} alt={`${item.name} 프로필`} />
-      </HostAvatar>
-      <ProfileCardBody>
-        <ProfileTitleRow>
-          <strong>{item.name}</strong>
-          <Icon name="message" />
-        </ProfileTitleRow>
-        <p>{item.summary}</p>
-        <ProfileMeta>
-          {item.category ? <span>{item.category}</span> : null}
-          {firstTag ? <span>{firstTag}</span> : null}
-          <span>경력 {item.experienceYears ?? 1}년</span>
-        </ProfileMeta>
-      </ProfileCardBody>
-    </HostCardLink>
-  );
-}
-
-type ModelCardProps = { item: TalentProfile };
-
-export function ModelCard({ item }: ModelCardProps) {
-  const firstTag = item.tags?.[0]?.replace('#', '');
+/** 홈 추천 쇼호스트·모델 프로필 카드 */
+export function ProfileCard({ item, type }: ProfileCardProps) {
+  const href = type === 'host' ? `/hosts/${item.id}` : `/models/${item.id}`;
+  const primary = type === 'host' ? item.category : item.modelType;
+  const tags = (item.tags ?? []).slice(0, 5);
+  const meta =
+    type === 'host'
+      ? `경력 ${item.experienceYears ?? 1}년`
+      : item.height
+        ? `키 ${item.height}cm`
+        : null;
+  const Body = type === 'host' ? ProfileCardBodyHost : ProfileCardBodyModel;
 
   return (
-    <ModelCardLink to={`/models/${item.id}`}>
-      <ModelMedia>
-        <img src={item.profileImage} alt={`${item.name} 프로필`} />
-      </ModelMedia>
-      <ProfileCardBody>
-        <ProfileTitleRow>
-          <strong>{item.name}</strong>
-          {item.modelType ? <RoleChip>{item.modelType}</RoleChip> : null}
-          <Icon name="message" />
-        </ProfileTitleRow>
-        <p>{item.summary}</p>
-        <ProfileMeta>
-          {firstTag ? <span>{firstTag}</span> : null}
-          {item.height ? <span>키 {item.height}cm</span> : <span>프로필 확인</span>}
-        </ProfileMeta>
-      </ProfileCardBody>
-    </ModelCardLink>
+    <ProfileCardArticle>
+      <ProfileCardMainLink to={href}>
+        <ProfilePhoto $variant={type}>
+          <img src={item.profileImage} alt="" />
+        </ProfilePhoto>
+        <Body>
+          <ProfileTitleRow>
+            <strong>{item.name}</strong>
+            {type === 'model' && primary ? <RoleChip>{primary}</RoleChip> : null}
+            <Icon name="message" />
+          </ProfileTitleRow>
+          <p>{item.summary ?? primary}</p>
+          <ProfileMeta>
+            {type === 'host' && primary ? <span>{primary}</span> : null}
+            {tags.map((tag) => (
+              <span key={tag}>{formatTag(tag)}</span>
+            ))}
+            {meta ? <span>{meta}</span> : null}
+          </ProfileMeta>
+        </Body>
+      </ProfileCardMainLink>
+      <ProfileCtaRow>
+        <ProfilePrimaryCta to={href}>제안하기</ProfilePrimaryCta>
+        <ProfileSecondaryCta to="/mypage/messages">메시지</ProfileSecondaryCta>
+      </ProfileCtaRow>
+    </ProfileCardArticle>
   );
 }
 
 type ClipCardProps = { item: ClipItem };
 
+/** 홈 HOT CLIP 숏클립 카드 */
 export function ClipCard({ item }: ClipCardProps) {
   return (
     <ClipCardLink to={`/clips/${item.id}`}>
       <ClipMedia>
-        <img src={item.thumbnail} alt={`${item.title} 숏클립 썸네일`} />
+        <img src={item.thumbnail} alt="" />
         <PlayButton aria-hidden="true">
           <Icon name="play" />
         </PlayButton>
@@ -169,14 +149,15 @@ export function ClipCard({ item }: ClipCardProps) {
 
 type NewsCardProps = { item: NewsItem };
 
+/** 홈 뉴스 카드 */
 export function NewsCard({ item }: NewsCardProps) {
   return (
     <NewsCardLink to={`/news/${item.id}`}>
       <NewsThumb>
-        <img src={item.thumbnail} alt={`${item.title} 뉴스 이미지`} />
-        <span>{item.category}</span>
+        <img src={item.thumbnail} alt="" />
       </NewsThumb>
       <NewsCardBody>
+        <NewsCategory>{item.category}</NewsCategory>
         <strong>{item.title}</strong>
         <p>{formatDate(item.createdAt)}</p>
       </NewsCardBody>

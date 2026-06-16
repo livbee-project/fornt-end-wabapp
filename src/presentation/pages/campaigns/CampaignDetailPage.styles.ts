@@ -167,48 +167,6 @@ export const RequirementItem = styled.li`
   font-weight: ${({ theme }) => theme.typography.fontWeight.meta};
 `;
 
-export const ApplyBar = styled.div`
-  position: fixed;
-  right: 0;
-  bottom: ${({ theme }) => theme.layout.bottomNavHeight};
-  left: 0;
-  z-index: 80;
-  padding: 12px ${({ theme }) => theme.layout.contentGutterMobile}
-    calc(12px + env(safe-area-inset-bottom, 0px));
-  border-top: 1px solid var(--color-border-subtle);
-  background: rgb(255 255 255 / 96%);
-  backdrop-filter: blur(12px);
-
-  ${media.desktop} {
-    bottom: 0;
-    left: 96px;
-    padding-right: ${({ theme }) => theme.layout.contentGutterDesktop};
-    padding-left: ${({ theme }) => theme.layout.contentGutterDesktop};
-  }
-`;
-
-export const ApplyBarInner = styled.div`
-  display: grid;
-  max-width: ${({ theme }) => theme.layout.contentWidth};
-  margin: 0 auto;
-`;
-
-export const ApplyButton = styled.button`
-  min-height: 52px;
-  border: 0;
-  border-radius: 16px;
-  background: ${({ theme }) => theme.colors.brand.primary};
-  color: ${({ theme }) => theme.colors.text.inverse};
-  font-size: var(--font-button);
-  font-weight: ${({ theme }) => theme.typography.fontWeight.title};
-  cursor: pointer;
-
-  &:disabled {
-    opacity: 0.45;
-    cursor: not-allowed;
-  }
-`;
-
 export const NotFoundCard = styled.div`
   ${profileCardSurface}
   margin-top: 20px;

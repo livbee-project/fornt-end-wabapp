@@ -15,6 +15,7 @@ type HomeSectionBlockProps = {
   children: ReactNode;
 };
 
+/** 홈 섹션 제목·전체보기·가로 스크롤 래퍼 */
 export function HomeSectionBlock({ title, subtitle, href, children }: HomeSectionBlockProps) {
   return (
     <HomeSection>
@@ -30,6 +31,7 @@ export function HomeSectionBlock({ title, subtitle, href, children }: HomeSectio
   );
 }
 
+/** 홈 섹션 제목에 강조(em/i) 마크업을 적용한다. */
 export function highlightSectionTitle(title: string): ReactNode {
   if (title === '지금 뜨는 쇼핑라이브') {
     return (

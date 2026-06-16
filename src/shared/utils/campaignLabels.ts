@@ -22,11 +22,14 @@ const shootingMethodLabels: Record<CampaignShootingMethod, string> = {
   negotiable: '촬영 방식 협의',
 };
 
+/** 일정 유형 enum을 한국어 라벨로 변환한다. */
 export const getScheduleTypeLabel = (value?: CampaignScheduleType) =>
   value ? scheduleTypeLabels[value] : '미정';
 
+/** 장소 공개 정책 enum을 한국어 라벨로 변환한다. */
 export const getLocationDisclosureLabel = (value?: CampaignLocationDisclosure) =>
   value ? locationDisclosureLabels[value] : '미정';
 
+/** 촬영 방식 enum을 한국어 라벨로 변환한다. */
 export const getShootingMethodLabel = (value?: CampaignShootingMethod) =>
   value ? shootingMethodLabels[value] : '미정';

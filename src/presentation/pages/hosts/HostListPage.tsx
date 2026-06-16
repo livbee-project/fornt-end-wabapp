@@ -1,61 +1,45 @@
-import { HostListCard } from '@/presentation/components/talent/HostListCard';
+import { ProfileGridCard } from '@/presentation/components/talent/ProfileGridCard';
 import { Icon } from '@/presentation/components/common/Icon';
-import { useCategoryFilter } from '@/presentation/hooks/useCategoryFilter';
 import { useMarketplaceRepository } from '@/presentation/contexts/marketplaceRepositoryContext';
-import { homeContent } from '@/shared/constants/homeContent';
 import {
-  CreateFab,
-  EmptyState,
-  FilterChip,
-  FilterRow,
-  ItemList,
-  PageDescription,
-  PageHeading,
-  PageMain,
-  PageRoot,
-  ResultMeta,
-} from '@/presentation/pages/shared/ListPageLayout.styles';
+  ListCreateFab,
+  ListPageMain,
+  ListPageRoot,
+  ListSection,
+  ProfileGrid,
+  SubSectionHeader,
+} from '@/presentation/pages/shared/profileListPage.styles';
 
+/** 추천 쇼호스트 프로필 목록 페이지 */
 export function HostListPage() {
   const repository = useMarketplaceRepository();
   const hosts = repository.getHostProfiles();
-  const { activeCategory, setActiveCategory, categories, filteredItems } = useCategoryFilter(hosts);
 
   return (
-    <PageRoot>
-      <PageMain>
-        <PageHeading>쇼호스트</PageHeading>
-        <PageDescription>{homeContent.sectionSubtitles.hosts}</PageDescription>
+    <ListPageRoot>
+      <ListPageMain>
+        <ListSection>
+          <SubSectionHeader>
+            <div>
+              <h2>
+                추천 <em>쇼호스트</em>
+              </h2>
+              <p>홈 카드와 동일한 정보 기준으로 노출됩니다.</p>
+            </div>
+            <span>{hosts.length}명</span>
+          </SubSectionHeader>
 
-        <FilterRow aria-label="카테고리 필터">
-          {categories.map((category) => (
-            <FilterChip
-              key={category}
-              type="button"
-              $active={activeCategory === category}
-              onClick={() => setActiveCategory(category)}
-            >
-              {category}
-            </FilterChip>
-          ))}
-        </FilterRow>
-
-        <ResultMeta>{filteredItems.length}명의 쇼호스트</ResultMeta>
-
-        {filteredItems.length > 0 ? (
-          <ItemList>
-            {filteredItems.map((item) => (
-              <HostListCard key={item.id} item={item} />
+          <ProfileGrid>
+            {hosts.map((item) => (
+              <ProfileGridCard key={item.id} item={item} type="host" />
             ))}
-          </ItemList>
-        ) : (
-          <EmptyState>선택한 카테고리에 해당하는 쇼호스트가 없습니다.</EmptyState>
-        )}
-      </PageMain>
+          </ProfileGrid>
+        </ListSection>
+      </ListPageMain>
 
-      <CreateFab to="/hosts/new" aria-label="쇼호스트 프로필 등록">
+      <ListCreateFab to="/hosts/new" aria-label="쇼호스트 포트폴리오 등록">
         <Icon name="plus" />
-      </CreateFab>
-    </PageRoot>
+      </ListCreateFab>
+    </ListPageRoot>
   );
 }

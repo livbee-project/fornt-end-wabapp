@@ -28,18 +28,10 @@ export const Media = styled.div`
   }
 `;
 
-export const PaymentBadge = styled.span`
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-  display: inline-flex;
-  align-items: center;
-  min-height: 28px;
-  padding: 0 11px;
-  border-radius: ${({ theme }) => theme.radius.round};
-  background: ${({ theme }) => theme.colors.brand.primary};
-  color: ${({ theme }) => theme.colors.text.inverse};
-  font-size: var(--font-meta);
+export const PaymentLine = styled.p`
+  margin: 0;
+  color: ${({ theme }) => theme.colors.brand.primary};
+  font-size: 13px;
   font-weight: ${({ theme }) => theme.typography.fontWeight.title};
 `;
 

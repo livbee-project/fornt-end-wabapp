@@ -1,64 +1,45 @@
-import { ModelListCard } from '@/presentation/components/talent/ModelListCard';
+import { ProfileGridCard } from '@/presentation/components/talent/ProfileGridCard';
 import { Icon } from '@/presentation/components/common/Icon';
-import { useCategoryFilter } from '@/presentation/hooks/useCategoryFilter';
 import { useMarketplaceRepository } from '@/presentation/contexts/marketplaceRepositoryContext';
-import { homeContent } from '@/shared/constants/homeContent';
 import {
-  CreateFab,
-  EmptyState,
-  FilterChip,
-  FilterRow,
-  ItemList,
-  PageDescription,
-  PageHeading,
-  PageMain,
-  PageRoot,
-  ResultMeta,
-} from '@/presentation/pages/shared/ListPageLayout.styles';
+  ListCreateFab,
+  ListPageMain,
+  ListPageRoot,
+  ListSection,
+  ProfileGrid,
+  SubSectionHeader,
+} from '@/presentation/pages/shared/profileListPage.styles';
 
+/** 추천 모델 프로필 목록 페이지 */
 export function ModelListPage() {
   const repository = useMarketplaceRepository();
   const models = repository.getModelProfiles();
-  const { activeCategory, setActiveCategory, categories, filteredItems } = useCategoryFilter(
-    models,
-    (item) => item.modelType,
-  );
 
   return (
-    <PageRoot>
-      <PageMain>
-        <PageHeading>모델</PageHeading>
-        <PageDescription>{homeContent.sectionSubtitles.models}</PageDescription>
+    <ListPageRoot>
+      <ListPageMain>
+        <ListSection>
+          <SubSectionHeader>
+            <div>
+              <h2>
+                추천 <em>모델</em>
+              </h2>
+              <p>브랜드 촬영 무드에 맞는 모델을 확인하고 제안할 수 있습니다.</p>
+            </div>
+            <span>{models.length}명</span>
+          </SubSectionHeader>
 
-        <FilterRow aria-label="모델 유형 필터">
-          {categories.map((category) => (
-            <FilterChip
-              key={category}
-              type="button"
-              $active={activeCategory === category}
-              onClick={() => setActiveCategory(category)}
-            >
-              {category}
-            </FilterChip>
-          ))}
-        </FilterRow>
-
-        <ResultMeta>{filteredItems.length}명의 모델</ResultMeta>
-
-        {filteredItems.length > 0 ? (
-          <ItemList>
-            {filteredItems.map((item) => (
-              <ModelListCard key={item.id} item={item} />
+          <ProfileGrid>
+            {models.map((item) => (
+              <ProfileGridCard key={item.id} item={item} type="model" />
             ))}
-          </ItemList>
-        ) : (
-          <EmptyState>선택한 유형에 해당하는 모델이 없습니다.</EmptyState>
-        )}
-      </PageMain>
+          </ProfileGrid>
+        </ListSection>
+      </ListPageMain>
 
-      <CreateFab to="/models/new" aria-label="모델 프로필 등록">
+      <ListCreateFab to="/models/new" aria-label="모델 포트폴리오 등록">
         <Icon name="plus" />
-      </CreateFab>
-    </PageRoot>
+      </ListCreateFab>
+    </ListPageRoot>
   );
 }

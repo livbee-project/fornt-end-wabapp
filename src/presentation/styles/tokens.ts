@@ -1,9 +1,6 @@
-/**
- * LIVBEE 디자인 토큰 — 단일 원본(source of truth).
- * test_codex `tokens.css` + `global.css` 기준을 TypeScript로 이식했다.
- * 새 디자인 값은 이 파일에만 추가하고, theme·GlobalStyle은 여기서 파생한다.
- */
+/** LIVBEE 디자인 토큰 단일 원본 — theme·GlobalStyle이 여기서 파생된다. */
 
+/** 색상 디자인 토큰 */
 export const colors = {
   brand: {
     primary: '#687cf4',
@@ -30,6 +27,7 @@ export const colors = {
   },
 } as const;
 
+/** 레이아웃·FAB·폼 치수 토큰 */
 export const layout = {
   contentWidth: '1280px',
   contentGutterMobile: '16px',
@@ -47,6 +45,7 @@ export const layout = {
   },
 } as const;
 
+/** spacing 스케일 토큰 */
 export const spacing = {
   1: '4px',
   2: '8px',
@@ -59,6 +58,7 @@ export const spacing = {
   12: '48px',
 } as const;
 
+/** border-radius 토큰 */
 export const radius = {
   sm: '8px',
   md: '12px',
@@ -67,6 +67,7 @@ export const radius = {
   round: '999px',
 } as const;
 
+/** box-shadow 토큰 */
 export const shadow = {
   card: '0 2px 8px rgb(54 80 180 / 5%)',
   cardHover: '0 3px 10px rgb(54 80 180 / 6%)',
@@ -75,12 +76,14 @@ export const shadow = {
   section: '0 -8px 20px rgb(54 80 180 / 3%)',
 } as const;
 
+/** transition duration·easing 토큰 */
 export const motion = {
   durationFast: '150ms',
   durationNormal: '250ms',
   easeStandard: 'ease',
 } as const;
 
+/** 폰트 패밀리·크기·굵기 타이포 토큰 */
 export const typography = {
   fontFamilyBase:
     '"NEXON Lv2 Gothic", "NEXON Lv2 Gothic OTF", "NexonLv2Gothic", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif',
@@ -114,7 +117,7 @@ export const typography = {
   },
 } as const;
 
-/** Mobile 0–767 / Tablet 768–1023 / Desktop 1024+ */
+/** 반응형 breakpoint(px) 토큰 */
 export const breakpoints = {
   mobileMax: 767,
   tabletMin: 768,

@@ -16,6 +16,7 @@ const footerLinks = [
   { label: '개인정보처리방침', href: '/privacy' },
 ] as const;
 
+/** 홈 하단 회사 정보·약관 링크 푸터 */
 export function HomeFooter() {
   return (
     <FooterRoot aria-label="서비스 정보">

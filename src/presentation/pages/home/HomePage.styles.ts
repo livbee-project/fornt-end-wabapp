@@ -230,6 +230,13 @@ const clamp2 = css`
   -webkit-box-orient: vertical;
 `;
 
+const clamp3 = css`
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+`;
+
 const ratioBox = css`
   position: relative;
   overflow: hidden;
@@ -273,14 +280,13 @@ export const LiveCardBody = styled.div`
     line-height: 1.28;
   }
 
-  em {
-    overflow: hidden;
-    color: ${({ theme }) => theme.colors.brand.primary};
+  p {
+    ${clamp2}
+    margin: 0;
+    color: ${({ theme }) => theme.colors.text.secondary};
     font-size: 12px;
-    font-style: normal;
-    font-weight: ${({ theme }) => theme.typography.fontWeight.meta};
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    line-height: 1.42;
+    font-weight: ${({ theme }) => theme.typography.fontWeight.body};
   }
 
   small {
@@ -290,47 +296,6 @@ export const LiveCardBody = styled.div`
     font-weight: ${({ theme }) => theme.typography.fontWeight.meta};
     white-space: nowrap;
     text-overflow: ellipsis;
-  }
-`;
-
-export const LiveProductRow = styled.div`
-  display: grid;
-  grid-template-columns: 44px minmax(0, 1fr);
-  align-items: center;
-  gap: 9px;
-  min-height: 58px;
-  padding: 8px;
-  border-radius: ${({ theme }) => theme.radius.md};
-  background: ${({ theme }) => theme.colors.brand.primarySoft};
-
-  span {
-    color: ${({ theme }) => theme.colors.text.muted};
-    font-size: var(--font-chip);
-    font-weight: ${({ theme }) => theme.typography.fontWeight.body};
-  }
-
-  p {
-    margin: 4px 0 0;
-    overflow: hidden;
-    color: ${({ theme }) => theme.colors.text.primary};
-    font-size: 12px;
-    font-weight: ${({ theme }) => theme.typography.fontWeight.meta};
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-`;
-
-export const LiveProductThumb = styled.div`
-  width: 44px;
-  height: 44px;
-  overflow: hidden;
-  border-radius: ${({ theme }) => theme.radius.sm};
-  background: ${({ theme }) => theme.colors.surface.default};
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
   }
 `;
 
@@ -352,33 +317,17 @@ export const BrandMedia = styled.div`
   aspect-ratio: 4 / 3;
 `;
 
-export const PaymentBadge = styled.span`
-  position: absolute;
-  right: 9px;
-  bottom: 9px;
-  display: inline-flex;
-  align-items: center;
-  min-height: 26px;
-  padding: 0 10px;
-  border-radius: ${({ theme }) => theme.radius.round};
-  background: ${({ theme }) => theme.colors.brand.primary};
-  color: ${({ theme }) => theme.colors.text.inverse};
-  font-size: var(--font-meta);
-  font-weight: ${({ theme }) => theme.typography.fontWeight.title};
-`;
-
 export const BrandCardBody = styled.div`
   padding: 12px;
 
-  > strong {
-    ${cardTitle}
-    font-size: 16px;
+  ${media.desktop} {
+    padding: 14px 16px 16px;
   }
 `;
 
 export const CampaignTitle = styled.p`
   ${clamp2}
-  margin: 7px 0 0;
+  margin: 0;
   color: ${({ theme }) => theme.colors.text.primary};
   font-size: ${({ theme }) => theme.typography.fontSize.homeCardTitle};
   font-weight: ${({ theme }) => theme.typography.fontWeight.title};
@@ -393,46 +342,40 @@ export const CampaignSummary = styled.p`
   line-height: 1.42;
 `;
 
-export const CampaignInfoList = styled.dl`
-  display: grid;
-  gap: 6px;
-  margin: 12px 0 0;
-
-  div {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-
-  dt {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    margin: 0;
-    font-size: 12px;
-    font-weight: ${({ theme }) => theme.typography.fontWeight.meta};
-
-    svg {
-      width: 14px;
-      height: 14px;
-      color: ${({ theme }) => theme.colors.brand.primary};
-    }
-  }
-
-  dd {
-    margin: 0;
-    overflow: hidden;
-    font-size: 12px;
-    font-weight: ${({ theme }) => theme.typography.fontWeight.meta};
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
+export const CampaignPayment = styled.p`
+  margin: 8px 0 0;
+  color: ${({ theme }) => theme.colors.brand.primary};
+  font-size: 13px;
+  font-weight: ${({ theme }) => theme.typography.fontWeight.title};
+  line-height: 1.2;
 `;
 
-export const HostCardLink = styled(Link)`
-  ${cardBase}
+export const CampaignBrandName = styled.p`
+  margin: 6px 0 0;
+  overflow: hidden;
+  color: ${({ theme }) => theme.colors.text.secondary};
+  font-size: 12px;
+  font-weight: ${({ theme }) => theme.typography.fontWeight.meta};
+  white-space: nowrap;
+  text-overflow: ellipsis;
+`;
+
+export const CampaignShootingDate = styled.p`
+  margin: 4px 0 0;
+  color: ${({ theme }) => theme.colors.text.muted};
+  font-size: 11px;
+  font-weight: ${({ theme }) => theme.typography.fontWeight.meta};
+`;
+
+export const ProfileCardArticle = styled.article`
+  ${listCardSurface}
+  flex: 0 0 auto;
+  display: grid;
+  grid-template-rows: 1fr auto;
   width: 148px;
-  padding-bottom: 12px;
+  min-width: 0;
+  overflow: hidden;
+  scroll-snap-align: start;
 
   ${media.tabletUp} {
     width: 180px;
@@ -443,47 +386,61 @@ export const HostCardLink = styled(Link)`
   }
 `;
 
-export const HostAvatar = styled.div`
+export const ProfileCardMainLink = styled(Link)`
   display: grid;
-  place-items: center;
-  padding: 16px 12px 8px;
-
-  img {
-    width: 72px;
-    height: 72px;
-    border-radius: ${({ theme }) => theme.radius.round};
-    object-fit: cover;
-    background: ${({ theme }) => theme.colors.surface.subtle};
-  }
+  color: ${({ theme }) => theme.colors.text.primary};
+  text-decoration: none;
 `;
 
-export const ModelCardLink = styled(Link)`
-  ${cardBase}
-  width: 148px;
+export const ProfilePhoto = styled.div<{ $variant: 'host' | 'model' }>`
+  ${({ $variant }) =>
+    $variant === 'host'
+      ? css`
+          display: flex;
+          justify-content: center;
+          padding: 14px 12px 0;
+          background: ${({ theme }) => theme.colors.surface.default};
 
-  ${media.tabletUp} {
-    width: 180px;
-  }
-
-  @media (min-width: 1180px) {
-    width: 198px;
-  }
-`;
-
-export const ModelMedia = styled.div`
-  ${ratioBox}
-  aspect-ratio: 4 / 5;
+          img {
+            display: block;
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: ${({ theme }) => theme.colors.surface.subtle};
+          }
+        `
+      : css`
+          ${ratioBox}
+          aspect-ratio: 4 / 5;
+        `}
 `;
 
 export const ProfileCardBody = styled.div`
   padding: 12px;
 
+  ${media.desktop} {
+    padding: 12px 14px 10px;
+  }
+
   p {
-    ${clamp2}
     margin: 7px 0 0;
     color: ${({ theme }) => theme.colors.text.secondary};
     font-size: 12px;
     line-height: 1.42;
+    font-weight: ${({ theme }) => theme.typography.fontWeight.body};
+  }
+`;
+
+export const ProfileCardBodyHost = styled(ProfileCardBody)`
+  p {
+    ${clamp3}
+  }
+`;
+
+export const ProfileCardBodyModel = styled(ProfileCardBody)`
+  p {
+    ${clamp2}
   }
 `;
 
@@ -518,6 +475,45 @@ export const RoleChip = styled.span`
   color: ${({ theme }) => theme.colors.brand.primary};
   font-size: var(--font-chip);
   font-weight: ${({ theme }) => theme.typography.fontWeight.title};
+`;
+
+export const ProfileCtaRow = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  padding: 0 10px 12px;
+
+  ${media.desktop} {
+    padding: 0 12px 14px;
+  }
+`;
+
+const profileCtaBase = css`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: ${({ theme }) => theme.radius.md};
+  font-size: 10px;
+  font-weight: ${({ theme }) => theme.typography.fontWeight.title};
+  line-height: 1.15;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+`;
+
+export const ProfilePrimaryCta = styled(Link)`
+  ${profileCtaBase}
+  background: ${({ theme }) => theme.colors.brand.primary};
+  color: ${({ theme }) => theme.colors.text.inverse};
+`;
+
+export const ProfileSecondaryCta = styled(Link)`
+  ${profileCtaBase}
+  background: ${({ theme }) => theme.colors.brand.primarySoft};
+  color: ${({ theme }) => theme.colors.brand.primary};
 `;
 
 export const ProfileMeta = styled.div`
@@ -556,13 +552,8 @@ export const ProfileMeta = styled.div`
 `;
 
 export const ClipCardLink = styled(Link)`
-  flex: 0 0 auto;
-  display: block;
+  ${cardBase}
   width: 112px;
-  min-width: 0;
-  scroll-snap-align: start;
-  color: ${({ theme }) => theme.colors.text.primary};
-  text-decoration: none;
 
   ${media.tabletUp} {
     width: 150px;
@@ -576,9 +567,6 @@ export const ClipCardLink = styled(Link)`
 export const ClipMedia = styled.div`
   ${ratioBox}
   aspect-ratio: 9 / 16;
-  border: 1px solid var(--color-border);
-  border-radius: ${({ theme }) => theme.radius.lg};
-  box-shadow: var(--shadow-list-card);
 `;
 
 export const PlayButton = styled.span`
@@ -601,7 +589,11 @@ export const PlayButton = styled.span`
 `;
 
 export const ClipCardBody = styled.div`
-  padding: 8px 0 0;
+  padding: 11px 12px 13px;
+
+  ${media.desktop} {
+    padding: 12px 14px 14px;
+  }
 
   strong {
     ${cardTitle}
@@ -628,25 +620,27 @@ export const NewsCardLink = styled(Link)`
 export const NewsThumb = styled.div`
   ${ratioBox}
   aspect-ratio: 16 / 9;
+`;
 
-  span {
-    position: absolute;
-    top: 9px;
-    left: 9px;
-    display: inline-flex;
-    align-items: center;
-    min-height: 26px;
-    padding: 0 10px;
-    border-radius: ${({ theme }) => theme.radius.round};
-    background: ${({ theme }) => theme.colors.brand.primary};
-    color: ${({ theme }) => theme.colors.text.inverse};
-    font-size: var(--font-chip);
-    font-weight: ${({ theme }) => theme.typography.fontWeight.title};
-  }
+export const NewsCategory = styled.span`
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  margin-bottom: 6px;
+  padding: 0 8px;
+  border-radius: ${({ theme }) => theme.radius.round};
+  background: ${({ theme }) => theme.colors.brand.primarySoft};
+  color: ${({ theme }) => theme.colors.brand.primary};
+  font-size: var(--font-chip);
+  font-weight: ${({ theme }) => theme.typography.fontWeight.title};
 `;
 
 export const NewsCardBody = styled.div`
   padding: 11px 12px 13px;
+
+  ${media.desktop} {
+    padding: 12px 16px 16px;
+  }
 
   strong {
     ${cardTitle}

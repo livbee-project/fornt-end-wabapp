@@ -26,6 +26,7 @@ const navItems: ReadonlyArray<{ key: ServiceHeaderTab; label: string; href: stri
   { key: 'community', label: '커뮤니티', href: '/community' },
 ];
 
+/** 로고·상단 탭·검색·계정 링크가 있는 서비스 헤더 */
 export function ServiceHeader({ active = 'home' }: ServiceHeaderProps) {
   const isLoggedIn = false;
 

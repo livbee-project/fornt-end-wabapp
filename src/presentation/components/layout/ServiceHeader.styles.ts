@@ -6,13 +6,13 @@ export const HeaderRoot = styled.header`
   position: sticky;
   top: 0;
   z-index: 30;
-  height: 108px;
+  height: 64px;
   padding: 0 ${({ theme }) => theme.layout.contentGutterMobile};
   border-bottom: 1px solid var(--color-border-subtle);
   background: rgb(255 255 255 / 98%);
   backdrop-filter: blur(18px);
 
-  ${media.tabletUp} {
+  ${media.desktop} {
     height: 68px;
     padding: 0 ${({ theme }) => theme.layout.contentGutterDesktop};
   }
@@ -29,7 +29,7 @@ export const HeaderTop = styled.div`
   justify-content: space-between;
   gap: ${({ theme }) => theme.spacing[3]};
 
-  ${media.tabletUp} {
+  ${media.desktop} {
     display: grid;
     height: 68px;
     grid-template-columns: auto minmax(0, 1fr) auto;
@@ -47,19 +47,11 @@ export const LogoLink = styled(Link)`
 `;
 
 export const TopNav = styled.nav`
-  position: absolute;
-  top: 64px;
-  right: calc(${({ theme }) => theme.layout.contentGutterMobile} * -1);
-  left: calc(${({ theme }) => theme.layout.contentGutterMobile} * -1);
-  display: flex;
-  height: 44px;
+  display: none;
   align-items: center;
   justify-content: center;
   gap: 30px;
   overflow-x: auto;
-  padding: 0 ${({ theme }) => theme.layout.contentGutterMobile};
-  border-top: 1px solid var(--color-border-subtle);
-  background: rgb(255 255 255 / 98%);
   color: ${({ theme }) => theme.colors.text.secondary};
   font-size: var(--font-body);
   font-weight: ${({ theme }) => theme.typography.fontWeight.body};
@@ -71,13 +63,10 @@ export const TopNav = styled.nav`
     display: none;
   }
 
-  ${media.tabletUp} {
-    position: static;
+  ${media.desktop} {
+    display: flex;
     height: 68px;
     overflow: visible;
-    padding: 0;
-    border-top: 0;
-    background: transparent;
   }
 `;
 
