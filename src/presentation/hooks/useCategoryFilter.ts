@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 
 const ALL_CATEGORY = '전체';
 
+/** 카테고리 필터 상태와 필터링된 목록을 제공하는 훅 */
 export function useCategoryFilter<T extends { category?: string; modelType?: string }>(
   items: T[],
   getCategory: (item: T) => string | undefined = (item) => item.category ?? item.modelType,

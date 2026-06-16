@@ -8,6 +8,7 @@ type MarketplaceRepositoryProviderProps = {
   repository?: MarketplaceRepository;
 };
 
+/** MarketplaceRepository를 Context로 주입하는 Provider */
 export function MarketplaceRepositoryProvider({
   children,
   repository = marketplaceRepository,

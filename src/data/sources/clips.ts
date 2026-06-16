@@ -1,6 +1,7 @@
 import type { ClipItem } from '@/domain/entities';
 import { mockAssets } from '@/shared/constants/mockAssets';
 
+/** 숏클립 카드 mock 목록 */
 export const clipItems: ClipItem[] = [
   {
     id: 'clip-1',

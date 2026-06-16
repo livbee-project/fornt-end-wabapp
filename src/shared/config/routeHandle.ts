@@ -8,6 +8,7 @@ export type RouteHandle = {
   showAppNav?: boolean;
 };
 
+/** React Router handle 객체를 RouteHandle 타입으로 안전하게 파싱한다. */
 export function getRouteHandle(handle: unknown): RouteHandle {
   if (handle && typeof handle === 'object') {
     return handle as RouteHandle;

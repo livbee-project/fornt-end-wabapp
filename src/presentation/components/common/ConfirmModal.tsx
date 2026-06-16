@@ -21,6 +21,7 @@ type ConfirmModalProps = {
   onCancel: () => void;
 };
 
+/** 확인·취소 액션이 있는 모달 다이얼로그 */
 export function ConfirmModal({
   open,
   title,

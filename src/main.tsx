@@ -9,6 +9,7 @@ if (!rootElement) {
   throw new Error('Root element not found');
 }
 
+/** 앱 엔트리 — StrictMode와 Provider로 React를 마운트한다. */
 createRoot(rootElement).render(
   <StrictMode>
     <AppProviders>

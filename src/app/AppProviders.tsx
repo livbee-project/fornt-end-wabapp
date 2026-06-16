@@ -7,6 +7,7 @@ type AppProvidersProps = {
   children: ReactNode;
 };
 
+/** Theme·GlobalStyle·Repository Provider를 감싸는 최상위 Provider */
 export function AppProviders({ children }: AppProvidersProps) {
   return (
     <ThemeProvider theme={theme}>

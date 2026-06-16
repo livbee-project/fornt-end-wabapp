@@ -16,6 +16,7 @@ export const listCardSurface = css`
   box-shadow: var(--shadow-list-card);
 `;
 
+/** 목록 카드 hover 시 그림자 전환 mixin */
 export const listCardSurfaceHover = css`
   ${listCardSurface}
   transition: box-shadow var(--duration-fast) var(--ease-standard);

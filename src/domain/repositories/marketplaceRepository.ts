@@ -7,6 +7,7 @@ import type {
   TalentProfile,
 } from '@/domain/entities';
 
+/** 마켓플레이스 데이터 조회 계약(Repository 인터페이스) */
 export type MarketplaceRepository = {
   getHomeData(): HomeData;
   getCampaigns(): CampaignItem[];

@@ -6,6 +6,7 @@ import type {
   TalentProfile,
 } from './marketplace';
 
+/** 홈 히어로 배너 도메인 타입 */
 export type HeroBanner = {
   image: string;
   title: string;
@@ -14,6 +15,7 @@ export type HeroBanner = {
   href: string;
 };
 
+/** 홈 화면에 노출할 집계 데이터 */
 export type HomeData = {
   heroBanner: HeroBanner;
   liveItems: LiveItem[];
@@ -24,6 +26,7 @@ export type HomeData = {
   newsItems: NewsItem[];
 };
 
+/** buildHomeData 유스케이스 입력 소스 */
 export type HomeDataSource = {
   heroBanner: HeroBanner;
   liveItems: LiveItem[];

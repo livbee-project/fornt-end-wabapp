@@ -91,6 +91,7 @@ const paths: Record<IconName, string[]> = {
   ],
 };
 
+/** 이름으로 SVG path를 렌더하는 공통 아이콘 */
 export function Icon({ name, className, title, ...props }: IconProps) {
   return (
     <svg

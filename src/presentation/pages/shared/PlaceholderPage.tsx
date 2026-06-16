@@ -3,6 +3,7 @@ import { PageDescription, PageRoot, PageTitle, StatusCard } from './PageScaffold
 import { useRouteHandle } from '@/presentation/hooks/useRouteHandle';
 import { useMarketplaceRepository } from '@/presentation/contexts/marketplaceRepositoryContext';
 
+/** 현재 경로에 맞는 mock 목록 건수를 반환한다. */
 function useListCount(): number | null {
   const { pathname } = useLocation();
   const repository = useMarketplaceRepository();
@@ -15,6 +16,7 @@ function useListCount(): number | null {
   return null;
 }
 
+/** 라우트 handle 기반 임시 스캐폴드 페이지 */
 export function PlaceholderPage() {
   const { title = '페이지', description } = useRouteHandle();
   const listCount = useListCount();

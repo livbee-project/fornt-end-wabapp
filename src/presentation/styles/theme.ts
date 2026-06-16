@@ -9,6 +9,7 @@ import {
   typography,
 } from './tokens';
 
+/** styled-components DefaultTheme에 주입할 앱 테마 객체 */
 export const theme = {
   colors,
   layout,
@@ -20,4 +21,5 @@ export const theme = {
   breakpoints,
 } as const;
 
+/** AppTheme 타입 — theme 객체 구조 */
 export type AppTheme = typeof theme;

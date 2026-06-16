@@ -6,6 +6,7 @@ type BottomNavigationProps = {
   active: BottomNavKey;
 };
 
+/** 메인 하단 탭 네비게이션 */
 export function BottomNavigation({ active }: BottomNavigationProps) {
   return (
     <Nav aria-label="main navigation">

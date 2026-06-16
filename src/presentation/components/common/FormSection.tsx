@@ -19,6 +19,7 @@ type FormSectionProps = {
   children: ReactNode;
 };
 
+/** 등록 폼의 단계·제목·본문을 묶는 섹션 블록 */
 export function FormSection({
   title,
   description,

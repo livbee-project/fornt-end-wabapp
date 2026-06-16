@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { PageDescription, PageRoot, PageTitle } from '@/presentation/pages/shared/PageScaffold.styles';
 
+/** 404 — 존재하지 않는 경로 안내 화면 */
 export function NotFoundPage() {
   return (
     <PageRoot>

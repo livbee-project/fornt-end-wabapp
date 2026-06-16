@@ -3,6 +3,7 @@ import type { MarketplaceRepository } from '@/domain/repositories/marketplaceRep
 
 export const MarketplaceRepositoryContext = createContext<MarketplaceRepository | null>(null);
 
+/** Context에서 MarketplaceRepository 인스턴스를 가져온다. */
 export function useMarketplaceRepository(): MarketplaceRepository {
   const context = useContext(MarketplaceRepositoryContext);
 

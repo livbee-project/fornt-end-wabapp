@@ -5,13 +5,27 @@ import { CampaignDetailPage } from '@/presentation/pages/campaigns/CampaignDetai
 import { CampaignListPage } from '@/presentation/pages/campaigns/CampaignListPage';
 import { HostDetailPage } from '@/presentation/pages/hosts/HostDetailPage';
 import { HostListPage } from '@/presentation/pages/hosts/HostListPage';
+import { HostProfileCreatePage } from '@/presentation/pages/hosts/HostProfileCreatePage';
+import { HostPortfolioCreatePage } from '@/presentation/pages/hosts/HostPortfolioCreatePage';
 import { ModelDetailPage } from '@/presentation/pages/models/ModelDetailPage';
 import { ModelListPage } from '@/presentation/pages/models/ModelListPage';
+import { ModelProfileCreatePage } from '@/presentation/pages/models/ModelProfileCreatePage';
 import { HomePage } from '@/presentation/pages/home/HomePage';
+import {
+  MyPage,
+  MyPageApplicants,
+  MyPageEdit,
+  MyPageHostPortfolios,
+  MyPageMessages,
+  MyPageModelPortfolios,
+} from '@/presentation/pages/mypage/MyPage';
+import { LoginPage, SignupPage } from '@/presentation/pages/auth/AuthPages';
+import { ContentDetailPage, ContentListPage } from '@/presentation/pages/shared/ContentListPage';
 import { PlaceholderPage } from '@/presentation/pages/shared/PlaceholderPage';
 import { NotFoundPage } from '@/presentation/pages/system/NotFoundPage';
 import type { RouteHandle } from '@/shared/config/routeHandle';
 
+/** 앱 전체 페이지 라우트 트리 */
 export const appRouter = createBrowserRouter([
   {
     element: <MainLayout />,
@@ -20,28 +34,28 @@ export const appRouter = createBrowserRouter([
       { path: 'hosts', element: <HostListPage />, handle: { title: '쇼호스트', bottomNav: 'hosts' } satisfies RouteHandle },
       {
         path: 'hosts/new',
-        element: <PlaceholderPage />,
+        element: <HostProfileCreatePage />,
         handle: { title: '쇼호스트 프로필 등록', showAppNav: false } satisfies RouteHandle,
+      },
+      {
+        path: 'hosts/portfolio/create',
+        element: <HostPortfolioCreatePage />,
+        handle: { title: '쇼호스트 포트폴리오 등록', showAppNav: false } satisfies RouteHandle,
+      },
+      {
+        path: 'hosts/:hostId/portfolio/create',
+        element: <HostPortfolioCreatePage />,
+        handle: { title: '쇼호스트 포트폴리오 등록', showAppNav: false } satisfies RouteHandle,
       },
       {
         path: 'hosts/:hostId',
         element: <HostDetailPage />,
         handle: { title: '쇼호스트 상세', bottomNav: 'hosts' } satisfies RouteHandle,
       },
-      {
-        path: 'hosts/portfolio/create',
-        element: <PlaceholderPage />,
-        handle: { title: '쇼호스트 포트폴리오 등록', showAppNav: false } satisfies RouteHandle,
-      },
-      {
-        path: 'hosts/:hostId/portfolio/create',
-        element: <PlaceholderPage />,
-        handle: { title: '쇼호스트 포트폴리오 등록', showAppNav: false } satisfies RouteHandle,
-      },
       { path: 'models', element: <ModelListPage />, handle: { title: '모델', bottomNav: 'models' } satisfies RouteHandle },
       {
         path: 'models/new',
-        element: <PlaceholderPage />,
+        element: <ModelProfileCreatePage />,
         handle: { title: '모델 프로필 등록', showAppNav: false } satisfies RouteHandle,
       },
       {
@@ -66,17 +80,17 @@ export const appRouter = createBrowserRouter([
       },
       {
         path: 'mypage',
-        element: <PlaceholderPage />,
+        element: <MyPage />,
         handle: { title: '마이페이지', bottomNav: 'mypage' } satisfies RouteHandle,
       },
       {
         path: 'mypage/applicants',
-        element: <PlaceholderPage />,
+        element: <MyPageApplicants />,
         handle: { title: '지원자 현황', bottomNav: 'mypage' } satisfies RouteHandle,
       },
       {
         path: 'mypage/messages',
-        element: <PlaceholderPage />,
+        element: <MyPageMessages />,
         handle: { title: '제안·메시지', bottomNav: 'mypage' } satisfies RouteHandle,
       },
       {
@@ -86,40 +100,56 @@ export const appRouter = createBrowserRouter([
       },
       {
         path: 'mypage/edit',
-        element: <PlaceholderPage />,
+        element: <MyPageEdit />,
         handle: { title: '내 정보 수정', bottomNav: 'mypage' } satisfies RouteHandle,
       },
       {
         path: 'mypage/host-portfolios',
-        element: <PlaceholderPage />,
+        element: <MyPageHostPortfolios />,
         handle: { title: '쇼호스트 포트폴리오 관리', bottomNav: 'mypage' } satisfies RouteHandle,
       },
       {
         path: 'mypage/model-portfolios',
-        element: <PlaceholderPage />,
+        element: <MyPageModelPortfolios />,
         handle: { title: '모델 포트폴리오 관리', bottomNav: 'mypage' } satisfies RouteHandle,
       },
-      { path: 'events', element: <PlaceholderPage />, handle: { title: '이벤트', showAppNav: false } satisfies RouteHandle },
+      {
+        path: 'events',
+        element: <ContentListPage title="이벤트" description="진행 중인 이벤트 목록입니다." kind="events" />,
+        handle: { title: '이벤트', showAppNav: false } satisfies RouteHandle,
+      },
       {
         path: 'events/:contentId',
-        element: <PlaceholderPage />,
+        element: <ContentDetailPage title="이벤트 상세" />,
         handle: { title: '이벤트 상세', showAppNav: false } satisfies RouteHandle,
       },
-      { path: 'news', element: <PlaceholderPage />, handle: { title: '뉴스', showAppNav: false } satisfies RouteHandle },
+      {
+        path: 'news',
+        element: (
+          <ContentListPage title="뉴스" description="업계 뉴스와 소식입니다." headerTab="news" kind="news" />
+        ),
+        handle: { title: '뉴스', showAppNav: false } satisfies RouteHandle,
+      },
       {
         path: 'news/:contentId',
-        element: <PlaceholderPage />,
+        element: <ContentDetailPage title="뉴스 상세" />,
         handle: { title: '뉴스 상세', showAppNav: false } satisfies RouteHandle,
       },
-      { path: 'clips', element: <PlaceholderPage />, handle: { title: '숏클립', showAppNav: false } satisfies RouteHandle },
+      {
+        path: 'clips',
+        element: (
+          <ContentListPage title="숏클립" description="HOT CLIP 모음입니다." headerTab="clips" kind="clips" />
+        ),
+        handle: { title: '숏클립', showAppNav: false } satisfies RouteHandle,
+      },
       {
         path: 'clips/:clipId',
-        element: <PlaceholderPage />,
+        element: <ContentDetailPage title="숏클립 상세" />,
         handle: { title: '숏클립 상세', showAppNav: false } satisfies RouteHandle,
       },
       {
         path: 'community',
-        element: <PlaceholderPage />,
+        element: <ContentListPage title="커뮤니티" description="자유 게시판입니다." kind="community" />,
         handle: { title: '커뮤니티', showAppNav: false } satisfies RouteHandle,
       },
       {
@@ -129,11 +159,11 @@ export const appRouter = createBrowserRouter([
       },
       {
         path: 'community/:postId',
-        element: <PlaceholderPage />,
+        element: <ContentDetailPage title="게시글 상세" />,
         handle: { title: '게시글 상세', showAppNav: false } satisfies RouteHandle,
       },
-      { path: 'login', element: <PlaceholderPage />, handle: { title: '로그인', showAppNav: false } satisfies RouteHandle },
-      { path: 'signup', element: <PlaceholderPage />, handle: { title: '회원가입', showAppNav: false } satisfies RouteHandle },
+      { path: 'login', element: <LoginPage />, handle: { title: '로그인', showAppNav: false } satisfies RouteHandle },
+      { path: 'signup', element: <SignupPage />, handle: { title: '회원가입', showAppNav: false } satisfies RouteHandle },
       {
         path: 'find-password',
         element: <PlaceholderPage />,

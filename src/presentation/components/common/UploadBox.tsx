@@ -22,6 +22,7 @@ type UploadBoxProps = {
   inputProps?: UploadInputProps;
 };
 
+/** 이미지 미리보기와 파일 선택을 지원하는 업로드 박스 */
 export function UploadBox({
   ratio,
   accept = 'image/*',

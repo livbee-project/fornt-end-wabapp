@@ -1,3 +1,4 @@
+/** 마켓플레이스 UI·폼 공통 카테고리 목록 */
 export const MARKETPLACE_CATEGORIES = [
   '뷰티',
   '패션',
@@ -9,8 +10,11 @@ export const MARKETPLACE_CATEGORIES = [
   '기타',
 ] as const;
 
+/** 공고 모집 대상 역할 선택지 */
 export const CAMPAIGN_TARGET_ROLES = ['쇼호스트', '모델', '쇼호스트·모델', '협의'] as const;
+/** 쇼호스트 등록 유형 선택지 */
 export const HOST_REGISTER_TYPES = ['개인 쇼호스트', '소속 쇼호스트', '프리랜서', '에이전시 소속'] as const;
+/** 모델 유형 선택지 */
 export const MODEL_TYPES = [
   '패션모델',
   '뷰티모델',
@@ -21,6 +25,7 @@ export const MODEL_TYPES = [
   '기타',
 ] as const;
 
+/** 업로드·미리보기용 이미지 비율 상수 */
 export const IMAGE_RATIOS = {
   campaignCover: { label: '4:3', value: 4 / 3 },
   liveThumbnail: { label: '1:1', value: 1 },

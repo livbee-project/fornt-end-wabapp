@@ -1,3 +1,4 @@
+/** presentation 스타일 모듈 barrel re-export */
 export { cssVariableDefinitions, toCssVariableBlock } from './cssVariables';
 export { GlobalStyle } from './globalStyle';
 export { listCardSurface, listCardSurfaceHover, listPageFab, profileCardSurface } from './mixins';

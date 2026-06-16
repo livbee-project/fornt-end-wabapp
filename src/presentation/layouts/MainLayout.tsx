@@ -25,6 +25,7 @@ const Content = styled.main<{ $withNav: boolean }>`
   }
 `;
 
+/** 하단 탭·Outlet을 포함하는 메인 앱 레이아웃 */
 export function MainLayout() {
   const bottomNavKey = useBottomNavKey();
 

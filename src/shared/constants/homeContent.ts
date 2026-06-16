@@ -1,3 +1,4 @@
+/** 홈 화면 정적 카피·섹션 제목 */
 export const homeContent = {
   hero: {
     eyebrow: '쇼핑라이브 매칭',

@@ -10,6 +10,7 @@ import {
   newsItems,
 } from '@/data/sources';
 
+/** id로 목록에서 단일 항목을 찾는다. */
 const findById = <T extends { id: string }>(items: T[], id: string) =>
   items.find((item) => item.id === id);
 

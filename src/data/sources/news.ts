@@ -1,6 +1,7 @@
 import type { NewsItem } from '@/domain/entities';
 import { mockAssets } from '@/shared/constants/mockAssets';
 
+/** 뉴스 카드 mock 목록 */
 export const newsItems: NewsItem[] = [
   {
     id: 'news-1',

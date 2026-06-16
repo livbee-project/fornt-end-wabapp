@@ -3,9 +3,11 @@ import type { CampaignItem, ClipItem, LiveItem, NewsItem, TalentProfile } from '
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
 const DISPLAY_DATE = /^\d{4}\.\d{2}\.\d{2}$/;
 
+/** 목록 내 id 중복 여부를 검사한다. */
 const uniqueIds = (items: Array<{ id: string }>) =>
   new Set(items.map(({ id }) => id)).size === items.length;
 
+/** mock marketplace 데이터의 참조 무결성과 형식을 검증한다. */
 export const validateMarketplaceMocks = ({
   campaigns,
   lives,

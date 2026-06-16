@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import { cssVariableDefinitions, toCssVariableBlock } from './cssVariables';
 
+/** 전역 리셋·타이포·CSS 변수를 주입하는 GlobalStyle */
 export const GlobalStyle = createGlobalStyle`
   :root {
     color-scheme: light;

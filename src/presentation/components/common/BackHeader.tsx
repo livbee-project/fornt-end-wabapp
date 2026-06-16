@@ -10,6 +10,7 @@ type BackHeaderProps = {
   sticky?: boolean;
 };
 
+/** 뒤로가기와 제목이 있는 상단 헤더 바 */
 export function BackHeader({
   title,
   backTo,

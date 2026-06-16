@@ -1,6 +1,7 @@
 import type { CampaignItem, LiveItem } from '@/domain/entities';
 import { mockAssets } from '@/shared/constants/mockAssets';
 
+/** 홈 히어로 배너 mock 데이터 */
 export const heroBanner = {
   image: mockAssets.heroBanner,
   title: 'MZ세대가 주목하는\n라이브 쇼핑 키워드 TOP 10',
@@ -9,6 +10,7 @@ export const heroBanner = {
   href: '/news',
 };
 
+/** 홈·목록용 쇼핑라이브 카드 mock 목록 */
 export const liveItems: LiveItem[] = [
   {
     id: 'live-1',
@@ -78,6 +80,7 @@ export const liveItems: LiveItem[] = [
   },
 ];
 
+/** 공고 목록·상세용 캠페인 mock 목록 */
 export const campaignItems: CampaignItem[] = [
   {
     id: 'campaign-1',

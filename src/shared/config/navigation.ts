@@ -15,6 +15,7 @@ export const bottomNavTabs: ReadonlyArray<{
   { key: 'mypage', label: '마이페이지', href: '/mypage', icon: 'profile' },
 ] as const;
 
+/** pathname에서 활성 하단 탭 키를 추론한다. */
 export function resolveBottomNavKey(pathname: string): BottomNavKey | null {
   if (pathname === '/') return 'home';
   if (pathname.startsWith('/hosts')) return 'hosts';
